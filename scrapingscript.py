@@ -257,13 +257,13 @@ X[X.columns] = scaler.fit_transform(X[X.columns])
 
 #load deeplearning model
 model = load_model("virality_prediction.h5")
-virality = model.predict(X).to_frame()
-
-
+virality = model.predict(X).tolist()
+ints = [int(float(num)) for num in virality]
+for i in range(10):
+    virality[i] = round(virality[i][0])
 #convert predictions into dataframe
-dataframe = pd.DataFrame.from_records(virality)
-dataframe.columns = ['No of Shares']
+df1 = pd.DataFrame({'Article Link':clink, 'No of Shares/Likes':virality})
 
 
 #dataframe to csv
-dataframe.to_csv('viralitypredictionexample.csv',index = False)   
+df1.to_csv('viralitypredictionexample.csv',index = False)   
