@@ -4,7 +4,7 @@
 ##### Dataset Used for Training :
 I have used the [Online News Popularity Data Set](https://archive.ics.uci.edu/ml/datasets/Online+News+Popularity#) available in the UCI machine learning repository to train my model.
 
-#### Data Set Information:
+#### Data Set Information([source](https://archive.ics.uci.edu/ml/datasets/Online+News+Popularity#)):
 * The articles were published by Mashable (www.mashable.com) and their content as the rights to reproduce it belongs to them. Hence, this dataset does not share the original content but some statistics associated with it. The original content be publicly accessed and retrieved using the provided urls.
 * Acquisition date: January 8, 2015
 * The estimated relative performance values were estimated by the authors using a Random Forest classifier and a rolling windows as assessment method. See their article for more details on how the relative performance values were set.
@@ -77,6 +77,7 @@ Number of Attributes: 61 (58 predictive attributes, 2 non-predictive, 1 goal fie
 
 ##### Methodology Used for training the model
 
+The dataset required some additional cleaning which was done by removing the extra spaces added to column headers and removing the unwanted columns. I had tried using truncatedSVD to the scaled data however the model didn't show much improvement hence i didn't use it in the final version.
 I trained the model using various machine learning regression models such as Liner Regression, Ridge, Lasso, BayesianRidge and also applied deep learning to train the model. I compared all the trained models based on their root mean squared errors and mean absolute error and finally selected the deep learning model based on the metrics(mean absolute error). I didn't use accuracy as a metric for selection since it is a regression based model and therefore used mean absolute error as a metric for selection.
 The neural network consists of 2 hidden layers along with the input and output layer. All the inputs are scaled using MinMaxScaler and passed into the input layer. I have used batch sizes of 32, 32, 64 for the input, hidden layer 1, hidden layer 2 respectively based on the accuracy of results i got on testing data while training the model.
 Finally i saved the model into a h5 file so that it can be used later without training for consistency of results.
@@ -85,5 +86,5 @@ Finally i saved the model into a h5 file so that it can be used later without tr
 
 In order to test my model on real world data I scrapped the required data to be used as features for the model input from [CareerAnna](https://www.careeranna.com/articles/category/mba/pages/) which is a student information site providing information about various technologies and exams . 
 I used Selenium and BeautifulSoup for scraping contents from the website.
-After scraping the data, it was cleaned and converted into a form such that it can be passed as model input along with scaling of the data.
-Finally the model(.h5 file) was loaded and the data was given as input and the number of shares/likes was predicted which depicted the virality of the information.An example of the the predicted samples from CareerAnna website can be viewed [here](https://github.com/b117020/OnlineNewsPopularity/blob/master/viralitypredictionexample.csv).
+After scraping the data, it was cleaned and a few NLP operations were performed on it in such that it was converted into a form thatcan be passed as model input along with scaling of the data.
+Finally the model(.h5 file) was loaded and the data was given as input and the number of shares/likes was predicted which depicted the virality of the published information.An example of the the predicted samples from CareerAnna website can be viewed [here](https://github.com/b117020/OnlineNewsPopularity/blob/master/viralitypredictionexample.csv).

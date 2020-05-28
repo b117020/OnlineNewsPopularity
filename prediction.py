@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Apr 26 10:16:05 2020
+Created on Sun Apr 26 10:16:05 2020
 
 @author: Devdarshan
 """
@@ -123,7 +123,7 @@ model.compile(loss='mean_absolute_error', optimizer='adam', metrics=['mean_absol
 
 #model_fitting
 model.fit(train_X, train_y, epochs=100)
-model.save("Virality_prediction.h5")
+#model.save("Virality_prediction.h5")
 model = load_model("virality_prediction.h5")
 
 predictions = model.predict(test_X)
